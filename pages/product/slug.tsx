@@ -4,6 +4,7 @@ import { ShopLayout } from '../../components/layouts';
 import { initialData } from '../../database/products';
 import { ProductSlideshow } from '../../components/products/ProductSlideshow';
 import { ItemCounter } from '../../components/ui';
+import { ProductSizeSelector } from '../../components/products';
 
 const product = initialData.products[0];
 
@@ -27,6 +28,10 @@ const ProductPage = () => {
             <Box sx={{ my: 2 }}>
               <Typography variant='subtitle2'>Cantidad</Typography>
               <ItemCounter />
+              <ProductSizeSelector
+                // selectedSize={product.sizes[0]}
+                sizes={product.sizes}
+              />
             </Box>
             {/* Agregar al carrito */}
             <Button color='secondary' className='circular-btn'>
