@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import NextLink from 'next/link';
 import {
   Box,
@@ -18,7 +19,11 @@ const productsInCart = [
   initialData.products[2],
 ];
 
-export const CartList = () => {
+interface Props {
+  editable?: boolean;
+}
+
+export const CartList: FC<Props> = ({ editable = false }) => {
   return (
     <>
       {productsInCart.map((product) => (
@@ -42,7 +47,11 @@ export const CartList = () => {
               <Typography variant='body1'>
                 Talla: <strong>M</strong>{' '}
               </Typography>
-              <ItemCounter />
+              {editable ? (
+                <ItemCounter />
+              ) : (
+                <Typography variant='h5'>3 items</Typography>
+              )}
             </Box>
           </Grid>
           <Grid
@@ -52,9 +61,11 @@ export const CartList = () => {
             alignItems='center'
             flexDirection='column'>
             <Typography variant='subtitle1'>{`$${product.price}`}</Typography>
-            <Button variant='text' color='secondary'>
-              Remover
-            </Button>
+            {editable && (
+              <Button variant='text' color='secondary'>
+                Remover
+              </Button>
+            )}
           </Grid>
         </Grid>
       ))}
